@@ -12,13 +12,10 @@ app.use('/post', router)
 
 const CONNECTION_URL = 'mongodb+srv://reactMaster:reactMaster123@cluster0.g4psn.mongodb.net/happymemory?retryWrites=true&w=majority';
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
-mongoose.connect(CONNECTION_URL,{useNewUrlParser:true, useUnifiedTopology:true})
-    .then(()=>app.listen(PORT,()=>console.log(`Server started on ${PORT}`)))
-    .catch(()=>console.log(`Error occured`));
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
 
-    mongoose.set('useFindAndModify',false)
-
-
-
+mongoose.set('useFindAndModify', false);

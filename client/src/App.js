@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Container, Typography, Grow, AppBar, Grid} from '@material-ui/core'
 import memory from './images/memories.jpg'
 import Form from './component/form/Form'
@@ -10,10 +10,10 @@ import { getPost,callMe } from './action/postAction';
 const App=()=>{
     const classes = useStyle()
     const dispatch = useDispatch();
-
+    const [currentUserId, setCurrentUserId] = useState(null)
     useEffect(() => {
         dispatch(getPost())
-    }, []);
+    }, [currentUserId]);
 
     return (
         <Container maxWidth="lg">
@@ -25,10 +25,10 @@ const App=()=>{
                 <Container>
                     <Grid container justify="space-between" alignItems="stretch" spacing={3}>
                         <Grid item xs={12} sm={7}>
-                            <Posts />
+                            <Posts setCurrentUserId={setCurrentUserId} />
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <Form />
+                            <Form currentUserId={currentUserId} setCurrentUserId={setCurrentUserId}/>
                         </Grid>
                     </Grid>
                 </Container>
